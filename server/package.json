@@ -1,0 +1,11 @@
+{
+  "name": "gyveecorp_blog_server",
+  "version": "0.0.1",
+  "description": "Server for gyveecrp blog",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "gyveecorp",
+  "license": "ISC"
+}
