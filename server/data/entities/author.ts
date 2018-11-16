@@ -5,7 +5,7 @@ export class Author implements IEntity {
     name: string;
     passwordHash: string;
 
-    static getTableName() : string {
+    static getTableName(): string {
         return "authors";
     }
 }

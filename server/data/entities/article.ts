@@ -1,4 +1,4 @@
-import { IEntity } from "./iEntity"
+import { IEntity } from "./iEntity";
 
 export class Article implements IEntity {
     id: number;
@@ -8,7 +8,7 @@ export class Article implements IEntity {
     content: string;
     datePublished: Date;
 
-    static getTableName() : string {
+    static getTableName(): string {
         return "articles";
     }
 }
