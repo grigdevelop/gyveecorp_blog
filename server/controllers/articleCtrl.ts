@@ -4,15 +4,15 @@ import { BaseCtrl } from "./baseCtrl";
 class ArticleCtrl extends BaseCtrl{
  
     
-   getArticles(){
+   getArticles(): Promise<Article[]>{
       return this.serviceLocator.articleService.getArticles();
    }
 
-   createArticle(article: Article){
+   createArticle(article: Article): Promise<Article>{
       return this.serviceLocator.articleService.createArticle(article);
    }
 
-   getLastArticles(){
+   getLastArticles(): Promise<Article[]>{
       return this.serviceLocator.articleService.getArticles(2);
    }
 

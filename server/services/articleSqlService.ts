@@ -7,10 +7,10 @@ class ArticleSqlService implements IArticleService {
 
     }
 
-    createArticle(article: Article): Article {
+    createArticle(article: Article): Promise<Article> {
         throw new Error("Method not implemented.");
     }
-    getArticles(count: number): Article[] {
+    getArticles(count: number): Promise<Article[]> {
         throw new Error("Method not implemented.");
     }    
 }

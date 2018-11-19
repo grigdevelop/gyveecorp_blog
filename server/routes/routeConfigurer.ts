@@ -27,14 +27,14 @@ class RouteConfigurer{
             let finalRoute = '/' + baseRoute + '/' + actionRoute;
 
             // configure get routes
-            this.app.get(finalRoute, (req, resp) => {
+            this.app.get(finalRoute, async (req, resp) => {
 
                 // setting controller context
                 controller.request = req;
                 controller.response = resp;
                 
                 // calling action from controller
-                resp.send(actionFn.apply(controller));            
+                resp.send(await actionFn.apply(controller));            
             });        
         });
 
@@ -46,18 +46,18 @@ class RouteConfigurer{
             let finalRoute = '/' + baseRoute + '/' + actionRoute;
     
             // configure get routes
-            this.app.post(finalRoute, (req, resp) => {
+            this.app.post(finalRoute,async (req, resp) => {
     
                 // setting controller context
                 controller.request = req;
                 controller.response = resp;
                 
                 // calling action from controller                          
-                resp.send(actionFn.apply(controller, [req.body]));            
+                resp.send(await actionFn.apply(controller, [req.body]));            
             });        
 
         });
-        
+
         return this;
     }
 }

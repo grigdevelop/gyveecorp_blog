@@ -9,10 +9,10 @@ class ServiceLocator{
     services: {};
     
     constructor(private db: any, mode: string){
-        
+
         switch(mode){
             case "sql":
-                this.articleService = new ArticleSqlService(db);
+                //this.articleService = new ArticleSqlService(db);
                 break;
             case "local":
             case "test":
