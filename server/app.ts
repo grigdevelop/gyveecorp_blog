@@ -6,6 +6,7 @@ import { PubSub } from "./utils/PubSub";
 class ExpressApp {
 
     public AppEvents: PubSub = new PubSub();    
+    private port: number = 8888;
 
     constructor(public app: Express) {
 
@@ -14,8 +15,8 @@ class ExpressApp {
     run(): void {
         let self = this;
 
-        this.app.listen(8888, () => {
-            console.log("Listening host 8888.");
+        this.app.listen(self.port, () => {
+            console.log("Listening host", self.port, ".");
             self.AppEvents.emit("onAppStarted", self.app);
         });
     }

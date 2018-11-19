@@ -4,6 +4,6 @@ import * as FileSync from 'lowdb/adapters/FileSync';
 const adapter = new FileSync('db.json');
 const db = lowdb(adapter);
 
-db.defaults({articles: []}).write();
+db.defaults({articles: [], authors: []}).write();
 
 export {db}; 

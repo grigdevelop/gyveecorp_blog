@@ -1,11 +1,5 @@
-import { IEntity } from "./iEntity";
-
-export class Author implements IEntity {
+export class Author{
     id: number;
     name: string;
     passwordHash: string;
-
-    static getTableName(): string {
-        return "authors";
-    }
 }

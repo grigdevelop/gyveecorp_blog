@@ -5,8 +5,7 @@ class ArticleCtrl extends BaseCtrl{
  
     
    getArticles(){
-
-      return [{id: 1, name: 'my name'}, {id: 2, name: 'your name'}];
+      return this.serviceLocator.articleService.getArticles();
    }
 
    createArticle(article: Article){
@@ -14,7 +13,7 @@ class ArticleCtrl extends BaseCtrl{
    }
 
    getLastArticles(){
-      return {name: 'gugush'};
+      return this.serviceLocator.articleService.getArticles(2);
    }
 
 
