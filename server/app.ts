@@ -1,22 +1,19 @@
 import * as express from "express";
+import * as bodyParser from 'body-parser';
 import {Express} from "express";
 import { PubSub } from "./utils/PubSub";
 
-
-
-
-
 class ExpressApp {
 
-    public AppEvents: PubSub = new PubSub();
+    public AppEvents: PubSub = new PubSub();    
 
-    constructor(private app: Express) {
+    constructor(public app: Express) {
 
     }
 
     run(): void {
-        // tslint:disable-next-line:no-empty
         let self = this;
+
         this.app.listen(8888, () => {
             console.log("Listening host 8888.");
             self.AppEvents.emit("onAppStarted", self.app);
@@ -24,9 +21,7 @@ class ExpressApp {
     }
 }
 
-// tslint:disable-next-line:typedef
 let app = express();
-
-app.listen(8888, () => console.log("Listening port 8888."));
-
-export { app };
+app.use(bodyParser.json());
+let expressApp = new ExpressApp(app);
+export { expressApp };
