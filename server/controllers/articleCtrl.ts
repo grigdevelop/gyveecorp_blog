@@ -1,5 +1,6 @@
 import { Article } from "../data/entities/article";
 import { BaseCtrl } from "./baseCtrl";
+import { HttpMethod } from "../infra/httpMethods";
 
 class ArticleCtrl extends BaseCtrl{
  
@@ -18,9 +19,9 @@ class ArticleCtrl extends BaseCtrl{
 
 
    configureActions() {
-      this.actionRoutes.addAction('get','getArticles', this.getArticles);
-      this.actionRoutes.addAction('get','getLastArticles', this.getLastArticles);
-      this.actionRoutes.addAction('post','createArticle', this.createArticle);
+      this.actionRoutes.addAction(HttpMethod.GET,'getArticles', this.getArticles);
+      this.actionRoutes.addAction(HttpMethod.GET,'getLastArticles', this.getLastArticles);
+      this.actionRoutes.addAction(HttpMethod.POST,'createArticle', this.createArticle);
       return 'articles';
    }
 }
