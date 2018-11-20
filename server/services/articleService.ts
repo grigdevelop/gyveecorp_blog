@@ -1,18 +1,20 @@
 import { Article } from "../data/entities/article";
 import * as shortid from 'shortid';
 import { IArticleService } from "./iArticleService";
+import { ServiceBase } from "./serviceBase";
 
-class ArticleService implements IArticleService{
+class ArticleService extends ServiceBase implements IArticleService{
 
     constructor(private db: any){        
+        super();
     }
 
     createArticle(article: Article) : Promise<Article> {
-        return new Promise<Article>(resolve => {
+        return this.asyncResult(() => {
             article.id = shortid.generate();
             this.db.get('articles').push(article).write();
-            resolve(article);
-        });              
+            return article;
+        });      
     }
 
     /**
@@ -20,15 +22,13 @@ class ArticleService implements IArticleService{
      * @param count Number of articles or 0 if all
      */
     getArticles(count: number = 0): Promise<Article[]>{
-        return new Promise<Article[]>(resolve => {
+        return this.asyncResult(() => {
             let articlesQuery = this.db.get('articles');
             if(count === 0){
                 return articlesQuery.value();
-            }
-            
-            resolve( articlesQuery.take(count).value());
-        });
-       
+            }            
+            return articlesQuery.take(count).value();
+        });      
     }
 }
 

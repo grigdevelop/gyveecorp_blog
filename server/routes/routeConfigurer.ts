@@ -10,6 +10,7 @@ class RouteConfigurer{
     }
 
     forController<TController extends BaseCtrl>(controller: TController):RouteConfigurer{
+
          // set controller services
         controller.serviceLocator = this.serviceLocator;
 
@@ -33,8 +34,13 @@ class RouteConfigurer{
                 controller.request = req;
                 controller.response = resp;
                 
-                // calling action from controller
-                resp.send(await actionFn.apply(controller));            
+                try{
+                    // calling action from controller
+                    resp.send(await actionFn.apply(controller));       
+                } catch (ex){
+                    this.handleError(resp, ex);
+                }
+                    
             });        
         });
 
@@ -52,13 +58,22 @@ class RouteConfigurer{
                 controller.request = req;
                 controller.response = resp;
                 
-                // calling action from controller                          
-                resp.send(await actionFn.apply(controller, [req.body]));            
+                try{
+                    // calling action from controller                          
+                    resp.send(await actionFn.apply(controller, [req.body]));           
+                } catch(ex){
+                    this.handleError(resp, ex);
+                }
+              
             });        
 
         });
 
         return this;
+    }
+
+    private handleError(resp, err: any){
+        resp.json({error: err});
     }
 }
 
