@@ -25,16 +25,19 @@ class ValidationResult{
 
 class ArticleValidator {
 
-    static validate(article: Article):string[] {
-        let messages : string[] = [];
+    static validate(article: Article) {
+        let result : ValidationResult = new ValidationResult();
 
-        this.forField("title", () => !validator.isEmpty(article.title), 
+        result.forField("title", () => !validator.isEmpty(article.title), 
             "Article title can't be empty.")
 
-        this.forField("desc", () => !validator.isEmpty(article.desc),
+        result.forField("desc", () => !validator.isEmpty(article.desc),
             "Article descrtiption can't be empty.");
+        
+        this.forField("content", () => !validator.isEmpty(article.content),
+            "Article content can't be empty.");
 
-        return messages;
+        return result;
     }
 
     static forField(fieldName: string, fn: () => boolean, message: string){
