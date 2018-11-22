@@ -1,5 +1,4 @@
-import * as lowdb from 'lowdb';
-import { getLocalDbInstance } from './lowDatabase';
+import { getLocalDbInstance, LowDbWithScheme } from './lowDatabase';
 
 interface IDbProvider<TLocalDb, TSqlDb> {
 
@@ -8,7 +7,7 @@ interface IDbProvider<TLocalDb, TSqlDb> {
     getSqlDb():TSqlDb;
 }
 
-class DbProvider implements IDbProvider<lowdb.LowdbSync<any>, any>{
+class DbProvider implements IDbProvider<LowDbWithScheme, any>{
 
     constructor(private localDbPath: string){
 

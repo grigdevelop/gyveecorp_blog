@@ -1,17 +1,32 @@
 import lowdb = require('lowdb');
 import * as FileSync from 'lowdb/adapters/FileSync';
 import { LowdbSync } from 'lowdb';
+import { Article } from '../entities/article';
+import { Author } from '../entities/author';
 
-let localDbInstance : LowdbSync<any>;
+class LocalDbScheme{
+    public articles: Article[] = [];
+    public authors: Author[] = [];
+}
 
-localDbInstance.defaults({articles: [], authors: []}).write();
-
-function getLocalDbInstance(localDbPath: string){
-    if( localDbInstance ) return localDbInstance;
-
-    const adapter = new FileSync(localDbPath);
-    localDbInstance = lowdb(adapter)
+interface LowDbWithScheme extends LowdbSync<LocalDbScheme>{
 
 }
 
-export { getLocalDbInstance }; 
+
+let localDbInstance : LowDbWithScheme;
+
+function getLocalDbInstance(localDbPath: string): LowDbWithScheme {
+
+    if( !localDbInstance ) {
+
+        let scheme = new LocalDbScheme();
+        const adapter = new FileSync(localDbPath);
+        localDbInstance = lowdb(adapter)
+        localDbInstance.defaults(scheme).write(); 
+    };
+
+    return localDbInstance;
+}
+
+export { getLocalDbInstance, LowDbWithScheme }; 

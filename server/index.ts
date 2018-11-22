@@ -4,9 +4,9 @@ import { ServiceLocator } from "./services/serviceLocator";
 import { ArticleCtrl } from "./controllers/articleCtrl";
 import { RouteConfigurer } from "./routes/routeConfigurer";
 import { IDbProvider, DbProvider } from "./data/repo/dbProvider";
-import { LowdbSync } from "lowdb";
+import { LowDbWithScheme } from "./data/repo/lowDatabase";
 
-const dbProvider: IDbProvider<LowdbSync<any>, any> = new DbProvider('db.json');
+const dbProvider : IDbProvider<LowDbWithScheme, any> = new DbProvider('db.json');
 const serviceLocator = new ServiceLocator(dbProvider, 'local');
 
 new RouteConfigurer(serviceLocator, expressApp.app)

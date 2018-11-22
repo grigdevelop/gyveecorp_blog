@@ -2,13 +2,13 @@ import { ArticleService } from "./articleService";
 import { IArticleService } from "./iArticleService";
 import { ArticleSqlService } from "./articleSqlService";
 import { IDbProvider } from "../data/repo/dbProvider";
-import { LowdbSync } from "lowdb";
+import { LowDbWithScheme } from "../data/repo/lowDatabase";
 
 class ServiceLocator{
 
     articleService: IArticleService;
     
-    constructor(dbProvider: IDbProvider<LowdbSync<any>, any>, mode: string){
+    constructor(dbProvider: IDbProvider<LowDbWithScheme, any>, mode: string){
 
         switch(mode){
             case "sql":
