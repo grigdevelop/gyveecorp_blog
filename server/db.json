@@ -1,29 +1,12 @@
 {
   "articles": [
     {
-      "title": "this is my article",
-      "desc": "this is my article description",
-      "id": "aJM8m9Mv6"
-    },
-    {
-      "title": "this is my article",
-      "desc": "this is my article description",
-      "id": "5dRFUgu3p"
-    },
-    {
-      "title": "this is my article",
-      "desc": "this is my article description",
-      "id": "MQi5TP9cG"
-    },
-    {
-      "title": "this is my article",
-      "desc": "this is my article description",
-      "id": "5MrmmQvGR"
-    },
-    {
-      "title": "this is my article",
-      "desc": "this is my article description",
-      "id": "23zk-Pz7r"
+      "authorId": 1,
+      "content": "lorem",
+      "datePublished": "2018-11-22T23:37:43.221Z",
+      "desc": "about",
+      "title": "some title",
+      "id": "W4f534NbU"
     }
   ],
   "authors": []

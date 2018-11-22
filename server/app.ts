@@ -7,8 +7,8 @@ import * as cors from 'cors';
 
 class ExpressApp {
 
-    public AppEvents: PubSub = new PubSub();    
-    private port: number = 8888;
+    public AppEvents: PubSub = new PubSub();    // TODO: maybe deprecated
+    private port: number = 8888; // default port
     private server: Server;
 
 

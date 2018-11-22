@@ -21,10 +21,10 @@ function getLocalDbInstance(localDbPath: string): LowDbWithScheme {
     if( !localDbInstance ) {
 
         let scheme = new LocalDbScheme();
-        const adapter = new FileSync(localDbPath);
+        const adapter = new FileSync(localDbPath);        
         localDbInstance = lowdb(adapter)
         localDbInstance.defaults(scheme).write(); 
-    };
+    };    
 
     return localDbInstance;
 }

@@ -12,6 +12,8 @@ class ArticleService extends ServiceBase implements IArticleService{
 
     createArticle(article: Article) : Promise<Article> {
         return this.asyncResult(() => {
+            this.localDb.read();
+
             article.id = shortid.generate();
             this.localDb.get('articles').push(article).write();
             return article;
@@ -24,6 +26,8 @@ class ArticleService extends ServiceBase implements IArticleService{
      */
     getArticles(count: number = 0): Promise<Article[]>{
         return this.asyncResult(() => {
+            this.localDb.read();
+
             let articlesQuery = this.localDb.get('articles');
             if(count === 0){
                 return articlesQuery.value();

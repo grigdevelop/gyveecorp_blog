@@ -1,6 +1,5 @@
-import { ServerTestUtil } from "../tools/serverTestUtil";
+import { testEnvironment } from "../tools/serverTestUtil";
 
 module.exports = async () => {
-    ServerTestUtil.init();
-    await ServerTestUtil.run();
+    await testEnvironment.globalBegin();
 }

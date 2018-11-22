@@ -1,4 +1,5 @@
 import { getLocalDbInstance, LowDbWithScheme } from './lowDatabase';
+import * as fs from 'fs';
 
 interface IDbProvider<TLocalDb, TSqlDb> {
 
@@ -8,19 +9,18 @@ interface IDbProvider<TLocalDb, TSqlDb> {
 }
 
 class DbProvider implements IDbProvider<LowDbWithScheme, any>{
-
+    
     constructor(private localDbPath: string){
 
     }
 
-    getLocalDb() {
+    getLocalDb() {        
         return getLocalDbInstance(this.localDbPath);
     }    
     
     getSqlDb() {
         throw new Error("Method not implemented.");
     }
-
 
 }
 
