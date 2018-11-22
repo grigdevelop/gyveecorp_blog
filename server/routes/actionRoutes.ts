@@ -5,22 +5,30 @@ type RouteItemType = {
     action: Function;
 };
 
+/**
+ * Dictionnary for route types
+ */
+interface RouteActionsDic{
+  [index: number]: RouteItemType[];
+}
+
 class ActionRoutes{
 
-    public post: RouteItemType[] = [];
-    public get: RouteItemType[] = [];
+    private routeActions: RouteActionsDic = {};
 
-    addAction(method: HttpMethod, route: string,  action: Function){
-        switch (method) {
-            case HttpMethod.POST:
-                this.post.push({route, action});
-                break;
-            case HttpMethod.GET:
-                this.get.push({route, action});
-                break;            
-            default:
-                break;
-        }
+    constructor(){
+
+        // initializing empty routes
+        this.routeActions[HttpMethod.GET] = [];
+        this.routeActions[HttpMethod.POST] = [];
+    }
+
+    addAction(method: HttpMethod, route: string,  action: Function):void{
+        this.routeActions[method].push({route, action});        
+    }
+
+    getActions(method: HttpMethod): RouteItemType[]{
+        return this.routeActions[method];
     }
 }
 

@@ -2,6 +2,7 @@ import { ServiceLocator } from "../services/serviceLocator";
 import {Express} from 'express';
 import { BaseCtrl } from "../controllers/baseCtrl";
 import { ActionRoutes } from "./actionRoutes";
+import { HttpMethod } from "../infra/httpMethods";
 
 class RouteConfigurer{
 
@@ -20,7 +21,7 @@ class RouteConfigurer{
         // get already configured routes
         let actions : ActionRoutes = controller.actionRoutes;
 
-        actions.get.forEach(action => {
+        actions.getActions(HttpMethod.GET).forEach(action => {
 
             // get action name which is also route name
             let actionRoute = action['route'] as string;
@@ -44,7 +45,7 @@ class RouteConfigurer{
             });        
         });
 
-        actions.post.forEach(action => {
+        actions.getActions(HttpMethod.POST).forEach(action => {
 
             // get action name which is also route name
             let actionRoute = action['route'] as string;
