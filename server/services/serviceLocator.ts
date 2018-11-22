@@ -5,10 +5,8 @@ import { ArticleSqlService } from "./articleSqlService";
 class ServiceLocator{
 
     articleService: IArticleService;
-
-    services: {};
     
-    constructor(private db: any, mode: string){
+    constructor(db: any, mode: string){
 
         switch(mode){
             case "sql":
