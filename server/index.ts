@@ -12,4 +12,8 @@ const serviceLocator = new ServiceLocator(dbProvider, 'local');
 new RouteConfigurer(serviceLocator, expressApp.app)
     .forController(new ArticleCtrl());
 
-expressApp.run();
+let s = async () => {
+    await expressApp.runAsync(8888);
+};
+s();
+

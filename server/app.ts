@@ -3,6 +3,7 @@ import * as bodyParser from 'body-parser';
 import {Express} from "express";
 import { PubSub } from "./utils/PubSub";
 import { Server } from "http";
+import * as cors from 'cors';
 
 class ExpressApp {
 
@@ -10,8 +11,13 @@ class ExpressApp {
     private port: number = 8888;
     private server: Server;
 
-    constructor(public app: Express) {
 
+    constructor(public app?: Express){
+        if(!app){
+            this.app = express();
+            this.app.use(bodyParser.json());           
+            this.app.use(cors());
+        }
     }
 
     run(): void {
@@ -23,30 +29,34 @@ class ExpressApp {
         });
     }
 
-    runAsync(port: number):Promise<ExpressApp>{
+    runAsync(port: number):Promise<any>{
         let self = this;
+        self.port = port;
 
         return new Promise(resolve => {
 
             self.server = self.app.listen(port, () => {
                 // after server runs
                 console.log("Async Listening host:", port);
-                resolve(self);
-
+                resolve(null);
             });
 
         });
     }
 
-    stopServer(){
-        this.server.close(() => {
-            console.log("server successfully stopped");
+    stopServer(): Promise<any>{
+        let self = this;
+
+        return new Promise<any>(resolve => {
+            this.server.close(() => {
+                console.log("Server at port", this.port, "stopped");
+                resolve(null);
+            });
         });
+      
     }
 }
 
-let app = express();
-app.use(bodyParser.json());
-let expressApp = new ExpressApp(app);
+let expressApp = new ExpressApp();
 
 export { expressApp };

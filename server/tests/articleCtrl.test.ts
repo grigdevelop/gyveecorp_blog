@@ -1,21 +1,15 @@
-import { IDbProvider, DbProvider } from "../data/repo/dbProvider";
-import { LowDbWithScheme } from "../data/repo/lowDatabase";
-import { ServiceLocator } from "../services/serviceLocator";
-import { expressApp } from "../app";
-import { RouteConfigurer } from "../routes/routeConfigurer";
-import { ArticleCtrl } from "../controllers/articleCtrl";
+import axios from 'axios';
 
 
-const dbProvider : IDbProvider<LowDbWithScheme, any> = new DbProvider('db.json');
-const serviceLocator = new ServiceLocator(dbProvider, 'test');
 
-new RouteConfigurer(serviceLocator, expressApp.app)
-    .forController(new ArticleCtrl());
+describe("Article controller integration tests", async () => {      
+    
+    test('Should do something',async () => {
+        let response = await axios.get('http://localhost:7777/articles/getArticles');            
+        console.log("getArticles response is: ", response.data);
+    });
 
-it('Should do something',async () => {
-    let app = await expressApp.runAsync(7777);
-    console.log("now application running in test");
-    app.stopServer();
 });
+
 
 

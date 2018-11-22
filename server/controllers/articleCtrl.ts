@@ -6,6 +6,7 @@ class ArticleCtrl extends BaseCtrl{
  
     
    getArticles(): Promise<Article[]>{
+      console.log("trying to get articles");
       return this.serviceLocator.articleService.getArticles();
    }
 
