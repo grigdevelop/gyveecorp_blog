@@ -1,9 +1,17 @@
-import * as lowdb from 'lowdb';
+import lowdb = require('lowdb');
 import * as FileSync from 'lowdb/adapters/FileSync';
+import { LowdbSync } from 'lowdb';
 
-const adapter = new FileSync('db.json');
-const db : lowdb.LowdbSync<any> = lowdb(adapter);
+let localDbInstance : LowdbSync<any>;
 
-db.defaults({articles: [], authors: []}).write();
+localDbInstance.defaults({articles: [], authors: []}).write();
 
-export { db }; 
+function getLocalDbInstance(localDbPath: string){
+    if( localDbInstance ) return localDbInstance;
+
+    const adapter = new FileSync(localDbPath);
+    localDbInstance = lowdb(adapter)
+
+}
+
+export { getLocalDbInstance }; 

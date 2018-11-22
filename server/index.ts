@@ -1,11 +1,14 @@
 import { expressApp } from "./app";
 import { ServiceLocator } from "./services/serviceLocator";
 
-import {db} from './data/repo/lowDatabase';
 import { ArticleCtrl } from "./controllers/articleCtrl";
 import { RouteConfigurer } from "./routes/routeConfigurer";
+import { IDbProvider, DbProvider } from "./data/repo/dbProvider";
+import { LowdbSync } from "lowdb";
 
-const serviceLocator = new ServiceLocator(db, 'local');
+const dbProvider: IDbProvider<LowdbSync<any>, any> = new DbProvider('db.json');
+const serviceLocator = new ServiceLocator(dbProvider, 'local');
+
 new RouteConfigurer(serviceLocator, expressApp.app)
     .forController(new ArticleCtrl());
 

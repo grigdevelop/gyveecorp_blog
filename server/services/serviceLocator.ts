@@ -1,12 +1,14 @@
 import { ArticleService } from "./articleService";
 import { IArticleService } from "./iArticleService";
 import { ArticleSqlService } from "./articleSqlService";
+import { IDbProvider } from "../data/repo/dbProvider";
+import { LowdbSync } from "lowdb";
 
 class ServiceLocator{
 
     articleService: IArticleService;
     
-    constructor(db: any, mode: string){
+    constructor(dbProvider: IDbProvider<LowdbSync<any>, any>, mode: string){
 
         switch(mode){
             case "sql":
@@ -14,7 +16,7 @@ class ServiceLocator{
                 break;
             case "local":
             case "test":
-                this.articleService = new ArticleService(db);
+                this.articleService = new ArticleService(dbProvider.getLocalDb());
                 break;                
         }
     }    
