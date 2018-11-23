@@ -9,8 +9,8 @@ class TestEnvironment implements IEnvironment{
     readonly serviceLocator: IServiceLocator;
     readonly databaseProvider: LocalDatabaseProvider;
     
-    constructor(){
-        this.databaseProvider = new LocalDatabaseProvider('testdb.json');
+    constructor(dbPath: string = 'testdb.json'){
+        this.databaseProvider = new LocalDatabaseProvider(dbPath);
         let repo :IRepositoryLocator = new RepositoryLocator(this.databaseProvider);
         this.serviceLocator = new ServiceLocator(repo)
         let ctrl: ControllerLocator = new ControllerLocator(this.serviceLocator)
