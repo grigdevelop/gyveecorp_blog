@@ -1,13 +1,4 @@
 {
-  "articles": [
-    {
-      "authorId": 1,
-      "content": "lorem",
-      "datePublished": "2018-11-22T23:37:43.221Z",
-      "desc": "about",
-      "title": "some title",
-      "id": "W4f534NbU"
-    }
-  ],
+  "articles": [],
   "authors": []
 }

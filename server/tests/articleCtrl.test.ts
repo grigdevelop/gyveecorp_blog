@@ -1,11 +1,13 @@
 import axios from 'axios';
 import { testEnvironment } from './tools/serverTestUtil';
 
-
-
 describe("Article controller integration tests", async () => {  
 
     beforeEach(() => {
+        testEnvironment.localDbArranger.resetDb();
+    });
+
+    afterEach(() => {
         testEnvironment.localDbArranger.resetDb();
     });
        

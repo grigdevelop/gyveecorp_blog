@@ -5,32 +5,6 @@ import { RouteConfigurer } from "./../../routes/routeConfigurer";
 import { expressApp } from "./../../app";
 import { ArticleCtrl } from "./../../controllers/articleCtrl";
 
-class ServerTestUtil{
-    private static dbProvider: IDbProvider<LowDbWithScheme, any>;
-    
-    static init():void{
-        const dbProvider : IDbProvider<LowDbWithScheme, any> = new DbProvider('db.json');
-        const serviceLocator = new ServiceLocator(dbProvider, 'test');
-        
-        new RouteConfigurer(serviceLocator, expressApp.app)
-            .forController(new ArticleCtrl());
-
-        this.dbProvider = dbProvider;
-    }
-
-    static run():Promise<any>{
-        return expressApp.runAsync(7777);
-    }
-
-    static stop():Promise<any>{
-        return expressApp.stopServer();
-    }
-
-    static dropLocalDb():void{
-      
-    }
-}
-
 interface ITestEnvironment{
     init():void;
     globalBegin():Promise<any>;
@@ -112,4 +86,4 @@ class TestEnvironment implements ITestEnvironment{
 let testEnvironment : ITestEnvironment = new TestEnvironment();
 testEnvironment.init();
 
-export { ServerTestUtil, testEnvironment };
+export { testEnvironment };

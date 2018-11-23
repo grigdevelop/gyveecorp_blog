@@ -27,7 +27,6 @@ class RouteConfigurer{
             let actionRoute = action['route'] as string;
             let actionFn = action['action'] as Function;
             let finalRoute = '/' + baseRoute + '/' + actionRoute;
-            console.log("getting final route", finalRoute);
             // configure get routes
             this.app.get(finalRoute, async (req, resp) => {
                 // setting controller context
