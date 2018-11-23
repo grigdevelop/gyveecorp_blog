@@ -1,2 +1,10 @@
 ***** Server *****
-- Before every test reset db
+- Before every test reset db +
+- Separate Repository logic. All works with db do in repositories
+- All validation and other request do in services
+- Controllers only to calls and routing
+
+-- Core
+- add core folder
+- place all common/library classes inside
+  so they will be like library
