@@ -24,7 +24,7 @@ class LocalDatabaseProvider implements IDatabaseProvider{
 
     createDatabase() : LocalDb {
         const scheme = new LocalDbScheme();
-        const adapter = new FileSync(this.dbPath);
+        const adapter = new FileSync(`assets/db/${this.dbPath}`);
         this.localDb = lowdb(adapter);  
         this.localDb.defaults(scheme).write();
 

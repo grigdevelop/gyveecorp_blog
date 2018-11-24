@@ -1,6 +1,6 @@
 import IArticleRepository from "../../core/repos/iArticle.repo";
 import Article from "../entities/article";
-import { mockData } from "../../tests/setup/mock.data";//TODO: not good
+import { mockData } from "../../test/setup/mock.data";//TODO: not good
 
 class ArticleSqlRepoistory implements IArticleRepository{
 

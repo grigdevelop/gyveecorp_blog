@@ -1,6 +1,7 @@
 import { TestEnvironment } from "../setup/test.environment";
 import IArticleService from "../../core/services/iArticle.service";
 import {mockData} from './../setup/mock.data';
+import * as assert from 'assert';
 
 describe('Should run article service tests', () => {
 
@@ -16,8 +17,10 @@ describe('Should run article service tests', () => {
     it('should get articles',async () => {
         let articles = await articleService.getArticles();
 
-        expect(articles).not.toBeNull();
-        expect(articles.length).toBe(mockData.articles.length);
+        //expect(articles).not.toBeNull();
+        //expect(articles.length).toBe(mockData.articles.length);
+        assert.notEqual(articles, null);
+        assert.equal(articles.length, mockData.articles.length);
     });
 
 });

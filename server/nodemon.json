@@ -1,5 +1,5 @@
 {
-    "ignore": [".git", "node_modules", "tests"],
+    "ignore": [".git", "node_modules", "test"],
     "watch": ["**/*.ts"],
     "exec": "npm start",
     "ext": "ts"
