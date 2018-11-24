@@ -8,8 +8,7 @@ class SqlDatabaseProvider implements IDatabaseProvider{
     }
 
     createDatabase() {
-        //throw new Error("Method not implemented.");
-        return null;
+        throw new Error("Method not implemented.");        
     }
 
 }

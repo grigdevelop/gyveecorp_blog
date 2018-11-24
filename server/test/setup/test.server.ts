@@ -35,8 +35,7 @@ class TestServer{
 
     start():Promise<any>{
         let self = this;
-        self.setMockData();
-
+        
         return new Promise<any>(resolve => {
             self.expressServer = self.expressApp.listen(self.Port, () => {
                 console.log(`integration server on ${self.Port}.`);
@@ -55,7 +54,7 @@ class TestServer{
         });
     }
 
-    private setMockData() {
+    public setMockData() {
         this.envrionment.databaseProvider.localDb.setState(mockData);
         this.envrionment.databaseProvider.localDb.write();
     }

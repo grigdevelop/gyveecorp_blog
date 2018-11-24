@@ -2,6 +2,7 @@ import Article from "../entities/article";
 import * as Joi from 'joi';
 import { ValidationResult } from "./validation.result";
 import { ValidationErrorItem } from "joi";
+import { ValidationError } from "../../core/http/validation.error";
 
 let articleSchema = Joi.object().keys({
     id: Joi.number().error(() => '"id" most be a number.').optional(),
@@ -48,8 +49,14 @@ let validateEntity = <T>(entity: T, schema: Joi.ObjectSchema) : Promise<Validati
     });
 }
 
-let validateArticle = (article: Article) : Promise<ValidationResult> => {
-    return validateEntity(article, articleSchema);
+let validateArticle = async (article: Article) : Promise<ValidationResult> => {
+    let result = await validateEntity(article, articleSchema);
+
+    // if(result.hasErrors){
+    //     throw new ValidationError(result);
+    // }
+        
+    return result;
 };
 
 export { validateArticle }

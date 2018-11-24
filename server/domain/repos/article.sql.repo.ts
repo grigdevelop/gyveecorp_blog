@@ -2,8 +2,8 @@ import IArticleRepository from "../../core/repos/iArticle.repo";
 import Article from "../entities/article";
 import { mockData } from "../../test/setup"; // TODO: not good use anything test in prod
 
-class ArticleSqlRepoistory implements IArticleRepository{
-
+class ArticleSqlRepoistory implements IArticleRepository{   
+    
     constructor(private sqlDb: any){
 
     }
@@ -18,6 +18,15 @@ class ArticleSqlRepoistory implements IArticleRepository{
     createArticle(article: Article): Promise<Article> {
         throw new Error("Method not implemented.");
     }    
+
+    updateArticle(article: Article): Promise<Article> {
+        throw new Error("Method not implemented.");
+    }
+
+    getArticleById(id: number): Promise<Article> {
+        throw new Error("Method not implemented.");
+    }
+
 }
 
 export default ArticleSqlRepoistory;

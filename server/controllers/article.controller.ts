@@ -11,7 +11,7 @@ class ArticleController {
     }
 
     createArticle(article: Article):Promise<Article>{
-        throw new Error("Method not implemented.");
+        return this.articleService.createArticle(article);
     }
 }
 

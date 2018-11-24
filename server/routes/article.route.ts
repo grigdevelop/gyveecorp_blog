@@ -1,24 +1,24 @@
+import BaseRoute from './best.route';
 import {Express, Request, Response } from 'express';
 import { IEnvironment } from '../core';
 
-class ArticleRoutes{
+class ArticleRoutes extends BaseRoute {
 
-    constructor(private environment: IEnvironment){
-
+    constructor(environment: IEnvironment){
+        super(environment);
     }
 
     setup(app: Express):void{
-       
+        
         let controller = this.environment.application.controllerLocator.articleController;
 
-        app.get('/article/getArticles', async (resuest: Request, response: Response) => {
-            let result = await controller.getArticles();
-            response.json(result);
+        app.get('/article/getArticles', (resuest: Request, response: Response) => {
+
+            this.json(response, async () => await controller.getArticles());
         });
 
-        app.post('article/createArticle', async (request: Request, response: Response)=> {
-            let result = await controller.createArticle(request.body);
-            response.json(result);
+        app.post('/article/createArticle', (request: Request, response: Response)=> {
+            this.json(response, async () => await controller.createArticle(request.body));
         });
     }
 }

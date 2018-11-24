@@ -1,6 +1,7 @@
 import { mockData } from "../setup";
 import { validateArticle } from "../../domain/validation/entity.validator";
 import { should } from 'chai';
+import { ValidationError } from "../../core/http/validation.error";
 
 describe('entity.validator.ts', () => {
 
@@ -17,7 +18,8 @@ describe('entity.validator.ts', () => {
         it('should notify about all invalid fields', async () => {
             let invalidArticle: any = {};
             
-            let result = await validateArticle(invalidArticle);
+            let result = await validateArticle(invalidArticle);           
+
             should().equal(result.hasErrors, true);
             should().not.equal(result.fieldsValidationResult['content'], undefined);
             should().not.equal(result.fieldsValidationResult['title'], undefined);

@@ -1,3 +1,5 @@
+import { ValidationError } from "../../core/http/validation.error";
+
 interface FieldsValidationResult{
     [index: string]: string[];
 }
@@ -32,6 +34,14 @@ class ValidationResult{
 
     public addMessage(message: string){
         this._message = message;
+    }
+
+    public throwIfInvalid(): void{
+
+        if(this.hasErrors){
+            throw new ValidationError(this);
+        }
+        
     }
 }
 
