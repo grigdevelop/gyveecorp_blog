@@ -1,19 +1,19 @@
-import { expressApp } from "./app";
-import { ServiceLocator } from "./services/serviceLocator";
+import * as express from 'express';
+import { Express } from 'express';
+import { IEnvironment } from './core';
+import { AppEnvironment } from './domain';
+import { ArticleRoutes } from './routes';
 
-import { ArticleCtrl } from "./controllers/articleCtrl";
-import { RouteConfigurer } from "./routes/routeConfigurer";
-import { IDbProvider, DbProvider } from "./data/repo/dbProvider";
-import { LowDbWithScheme } from "./data/repo/lowDatabase";
+const app: Express = express();
+const environment: IEnvironment = new AppEnvironment();
+const articleRoutes: ArticleRoutes = new ArticleRoutes(environment);
 
-const dbProvider : IDbProvider<LowDbWithScheme, any> = new DbProvider('db.json');
-const serviceLocator = new ServiceLocator(dbProvider, 'local');
+articleRoutes.setup(app);
 
-new RouteConfigurer(serviceLocator, expressApp.app)
-    .forController(new ArticleCtrl());
+app.get('/', (req, resp) => {
+    resp.json({server: 'another good succes'});
+});
 
-let s = async () => {
-    await expressApp.runAsync(8888);
-};
-s();
-
+app.listen(8888, () => {
+    console.log("listening port 8888");
+});

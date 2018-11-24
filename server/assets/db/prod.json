@@ -1,0 +1,28 @@
+{
+  "articles": [
+    {
+      "id": 1,
+      "title": "fully unique title",
+      "desc": "some desc",
+      "content": "lorem ipsum dolor sit",
+      "datePublished": "2018-11-24T16:46:15.215Z",
+      "authorId": 1
+    },
+    {
+      "id": 2,
+      "title": "my article 1",
+      "desc": "some desc 1",
+      "content": "lorem ipsum dolor sit 1",
+      "datePublished": "2018-11-24T16:46:15.215Z",
+      "authorId": 1
+    },
+    {
+      "id": 3,
+      "title": "my article 2",
+      "desc": "some desc 2",
+      "content": "lorem ipsum dolor sit 2",
+      "datePublished": "2018-11-24T16:46:15.215Z",
+      "authorId": 1
+    }
+  ]
+}
