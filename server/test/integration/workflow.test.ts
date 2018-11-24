@@ -1,7 +1,7 @@
-import { TestServer } from "../setup/test.server";
-import { TestClient } from "../setup/test.client";
-import Article from "../../domain/entities/article";
-import { mockData } from "../setup/mock.data";
+import { TestServer } from "./../setup/test.server";
+import { TestClient } from "./../setup/test.client";
+import Article from "./../../domain/entities/article";
+import { mockData } from "./../setup";
 import * as assert from 'assert';
 
 
@@ -9,6 +9,7 @@ describe('should run workflow tests', () => {
 
     const server = new TestServer();
     const client = new TestClient(server);
+    const db_articles = mockData.articles;// for debugging
 
     before(async () => {
         await server.start();
@@ -22,6 +23,6 @@ describe('should run workflow tests', () => {
         let articles = await client.get<Article[]>('article/getarticles');
 
         //expect(articles.length).toBe(mockData.articles.length);
-        assert.equal(articles.length, mockData.articles.length);
+        assert.equal(articles.length, db_articles.length);
     });
 })

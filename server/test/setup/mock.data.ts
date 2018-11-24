@@ -31,4 +31,4 @@ class MockData{
 
 let mockData = new MockData();
 
-export { mockData };
+export default mockData;

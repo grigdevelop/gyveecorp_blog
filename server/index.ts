@@ -10,6 +10,10 @@ const articleRoutes: ArticleRoutes = new ArticleRoutes(environment);
 
 articleRoutes.setup(app);
 
+app.get('/', (req, resp) => {
+    resp.json({server: 'another good succes'});
+});
+
 app.listen(8888, () => {
     console.log("listening port 8888");
 });

@@ -1,12 +1,11 @@
-import { IEnvironment } from "../../core";
 import { TestEnvironment } from "./test.environment";
 import * as express from 'express';
 import { Express } from 'express';
 import { ArticleRoutes } from "../../routes";
 import * as http from "http";
-import { mockData } from "./mock.data";
 import * as bodyParser from 'body-parser';
 import * as cors from 'cors';
+import { mockData } from ".";
 
 
 class TestServer{

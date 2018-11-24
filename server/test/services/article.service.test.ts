@@ -1,7 +1,7 @@
 import { TestEnvironment } from "../setup/test.environment";
 import IArticleService from "../../core/services/iArticle.service";
-import {mockData} from './../setup/mock.data';
 import * as assert from 'assert';
+import { mockData } from "../setup";
 
 describe('Should run article service tests', () => {
 
