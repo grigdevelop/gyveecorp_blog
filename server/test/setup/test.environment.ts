@@ -5,6 +5,7 @@ import { ControllerLocator, ServiceLocator, RepositoryLocator } from "../../doma
 import { IServiceLocator, IRepositoryLocator } from "../../core/locators";
 
 class TestEnvironment implements IEnvironment{
+
     readonly application: Application;
     readonly serviceLocator: IServiceLocator;
     readonly databaseProvider: LocalDatabaseProvider;

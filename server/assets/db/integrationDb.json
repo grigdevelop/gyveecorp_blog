@@ -1,36 +1,3 @@
 {
-  "articles": [
-    {
-      "id": 1,
-      "title": "my article",
-      "desc": "some desc",
-      "content": "lorem ipsum dolor sit",
-      "datePublished": "2018-11-24T17:27:27.542Z",
-      "authorId": 1
-    },
-    {
-      "id": 2,
-      "title": "my article 1",
-      "desc": "some desc 1",
-      "content": "lorem ipsum dolor sit 1",
-      "datePublished": "2018-11-24T17:27:27.542Z",
-      "authorId": 1
-    },
-    {
-      "id": 3,
-      "title": "my article 2",
-      "desc": "some desc 2",
-      "content": "lorem ipsum dolor sit 2",
-      "datePublished": "2018-11-24T17:27:27.542Z",
-      "authorId": 1
-    },
-    {
-      "title": "m article",
-      "content": "fff",
-      "datePublished": "2018-11-24T17:27:28.091Z",
-      "authorId": 1,
-      "desc": "some desc",
-      "id": 4
-    }
-  ]
+  "articles": []
 }

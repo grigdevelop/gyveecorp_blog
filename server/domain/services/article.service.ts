@@ -2,10 +2,10 @@ import IArticleService from "../../core/services/iArticle.service";
 import IArticleRepository from "../../core/repos/iArticle.repo";
 import Article from "../entities/article";
 import { validateArticle } from "../validation/entity.validator";
-import { ValidationError } from "../../core/http/validation.error";
+import { toValidInt } from "../validation/validators";
 
-class ArticleService implements IArticleService{
-   
+class ArticleService implements IArticleService {
+       
    
     constructor(private readonly articleRepository: IArticleRepository){
 
@@ -31,6 +31,40 @@ class ArticleService implements IArticleService{
         }
 
         return this.articleRepository.updateArticle(article);
+    }
+
+    async getArticle(article: Article):Promise<Article>{
+        
+        if(!article.id){
+            throw new Error('id is required for getting article.');
+        }
+
+        // because of GET request, it understand as a string
+        article.id = toValidInt(article.id);
+        if(!article.id){
+            throw new Error('id must be number.');
+        }
+
+        let result = await this.articleRepository.getArticleById(article.id);
+        if(!result){
+            throw new Error(`Article with id '${article.id}' not found.`);
+        }
+
+        return result;
+    }
+
+    async deleteArticle(article: Article): Promise<void> {
+        
+        if(!article.id){
+            throw new Error('id is required for deleting article.');
+        }
+
+        let foundArticle = await this.articleRepository.getArticleById(article.id);
+        if(!foundArticle){
+            throw new Error(`Article with id '${article.id}' not found.`);
+        }
+
+        await this.articleRepository.deleteArticleById(article.id);
     }
 
 

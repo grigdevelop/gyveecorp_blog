@@ -9,6 +9,8 @@ interface IArticleRepository {
     updateArticle(article: Article):Promise<Article>;
 
     getArticleById(id: number):Promise<Article>;
+
+    deleteArticleById(id: number):Promise<void>;
 }
 
 export default IArticleRepository;

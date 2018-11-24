@@ -6,6 +6,7 @@ import * as http from "http";
 import * as bodyParser from 'body-parser';
 import * as cors from 'cors';
 import { mockData } from ".";
+import { LocalDb } from "../../domain/providers/local.database.provider";
 
 
 class TestServer{
@@ -53,10 +54,9 @@ class TestServer{
             });
         });
     }
-
-    public setMockData() {
-        this.envrionment.databaseProvider.localDb.setState(mockData);
-        this.envrionment.databaseProvider.localDb.write();
+    
+    public getServerDatabase():LocalDb{
+        return this.envrionment.databaseProvider.localDb;
     }
 
 }

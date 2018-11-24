@@ -3,7 +3,7 @@ import IArticleRepository from "../../core/repos/iArticle.repo";
 import { LocalDb } from "../providers/local.database.provider";
 
 class ArticleLocalRepository implements IArticleRepository{
-        
+            
     constructor(private localDb: LocalDb){
 
     }
@@ -50,6 +50,18 @@ class ArticleLocalRepository implements IArticleRepository{
                 .value();
 
             resolve(article);
+        });
+    }
+
+    deleteArticleById(id: number): Promise<void> {
+        return new Promise<void>(resolve => {
+
+            this.localDb.get('articles')
+                .remove({id: id})
+                .write();
+
+            resolve();
+
         });
     }
 

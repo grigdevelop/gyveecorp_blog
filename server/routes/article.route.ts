@@ -20,6 +20,14 @@ class ArticleRoutes extends BaseRoute {
         app.post('/article/createArticle', (request: Request, response: Response)=> {
             this.json(response, async () => await controller.createArticle(request.body));
         });
+
+        app.get('/article/getArticle/:id', (request: Request, response: Response)=> {
+            this.json(response, async () => await controller.getArticle(request.params));
+        });
+
+        app.post('/article/deleteArticle', (request: Request, response: Response)=> {
+            this.json(response, async () => await controller.deleteArticle(request.body));
+        });
     }
 }
 
