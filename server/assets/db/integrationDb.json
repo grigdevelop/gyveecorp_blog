@@ -5,7 +5,7 @@
       "title": "my article",
       "desc": "some desc",
       "content": "lorem ipsum dolor sit",
-      "datePublished": "2018-11-24T12:27:16.627Z",
+      "datePublished": "2018-11-24T12:55:25.863Z",
       "authorId": 1
     },
     {
@@ -13,7 +13,7 @@
       "title": "my article 1",
       "desc": "some desc 1",
       "content": "lorem ipsum dolor sit 1",
-      "datePublished": "2018-11-24T12:27:16.627Z",
+      "datePublished": "2018-11-24T12:55:25.863Z",
       "authorId": 1
     },
     {
@@ -21,7 +21,7 @@
       "title": "my article 2",
       "desc": "some desc 2",
       "content": "lorem ipsum dolor sit 2",
-      "datePublished": "2018-11-24T12:27:16.627Z",
+      "datePublished": "2018-11-24T12:55:25.863Z",
       "authorId": 1
     }
   ]

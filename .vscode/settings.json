@@ -3,5 +3,15 @@
     "mochaExplorer.require": [
         "ts-node/register"
     ],
-    "mochaExplorer.cwd": "server"
+    "mochaExplorer.cwd": "server",
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/server/node_modules": true,
+        "**/server/package-lock.json": true,
+        "**/client": true
+    }
 }
