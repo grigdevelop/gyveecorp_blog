@@ -8,3 +8,16 @@
 - add core folder
 - place all common/library classes inside
   so they will be like library
+
+
+-- Workflow
+
+- Main page
+    - My name, picture, bio, education, jobs
+- Blog
+    - Posts
+        - Posts by published date
+        - Single post
+    - AdminPage
+        - List of posts
+        - CRUD of posts

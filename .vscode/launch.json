@@ -27,7 +27,6 @@
             "args": [
                 "${workspaceFolder}\\src\\index.ts"
             ],
-            "cwd": "${workspaceFolder}/src",
             "restart": true
         }
     ]
