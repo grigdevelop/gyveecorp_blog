@@ -18,19 +18,21 @@ class ArticleService implements IArticleService {
     }
 
     getUserArticles():Promise<Article[]>{
-
+        // only for authrozed user
         this.authService.checkAuthorized();
 
         return this.articleRepository.getAuthorArticles(this.authService.getAuthorized().id);
     }
     
     async createArticle(article: Article): Promise<Article> {        
+        // validate article
         await this.validateArticleForAuthor(article);  
 
         return this.articleRepository.createArticle(article);       
     }
 
     async updateArticle(article: Article): Promise<Article> {
+        // validate article
         await this.validateArticleForAuthor(article);
 
         if(!this.articleRepository.getArticleById(article.id)){
