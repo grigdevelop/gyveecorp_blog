@@ -1,6 +1,7 @@
-import Article from "../../domain/entities/article";
+import { Article } from "../../domain/entities";
 
 interface IArticleService {
+    
     getArticles():Promise<Article[]>;
 
     createArticle(article: Article):Promise<Article>;

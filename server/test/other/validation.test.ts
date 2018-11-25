@@ -1,7 +1,6 @@
 import { mockData } from "../setup";
 import { validateArticle } from "../../domain/validation/entity.validator";
 import { should } from 'chai';
-import { ValidationError } from "../../core/http/validation.error";
 
 describe('entity.validator.ts', () => {
 
@@ -24,8 +23,8 @@ describe('entity.validator.ts', () => {
             should().not.equal(result.fieldsValidationResult['content'], undefined);
             should().not.equal(result.fieldsValidationResult['title'], undefined);
             should().not.equal(result.fieldsValidationResult['desc'], undefined);
-            should().not.equal(result.fieldsValidationResult['authorId'], undefined);
             should().not.equal(result.fieldsValidationResult['datePublished'], undefined);
+            should().not.equal(result.fieldsValidationResult['authorId'], undefined);
 
             // id is not required
             should().equal(result.fieldsValidationResult['id'], undefined);

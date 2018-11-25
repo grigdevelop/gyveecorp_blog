@@ -1,30 +1,39 @@
 import IArticleService from "../../core/services/iArticle.service";
 import IArticleRepository from "../../core/repos/iArticle.repo";
-import Article from "../entities/article";
 import { validateArticle } from "../validation/entity.validator";
 import { toValidInt } from "../validation/validators";
+import { IAuthService } from "../../core/services/iAuth.service";
+import { Article } from "../entities";
 
 class ArticleService implements IArticleService {
        
    
-    constructor(private readonly articleRepository: IArticleRepository){
+    constructor(private readonly articleRepository: IArticleRepository, 
+        private readonly authService: IAuthService){
 
     }
 
     getArticles(): Promise<Article[]> {
         return this.articleRepository.getArticles();
     }
+
+    getUserArticles():Promise<Article[]>{
+        // only for authrozed user
+        this.authService.checkAuthorized();
+
+        return this.articleRepository.getAuthorArticles(this.authService.getAuthorized().id);
+    }
     
-    async createArticle(article: Article): Promise<Article> {
-        let result = await validateArticle(article);
-        result.throwIfInvalid();        
+    async createArticle(article: Article): Promise<Article> {        
+        // validate article
+        await this.validateArticleForAuthor(article);  
 
         return this.articleRepository.createArticle(article);       
     }
 
     async updateArticle(article: Article): Promise<Article> {
-        let result = await validateArticle(article);
-        result.throwIfInvalid();
+        // validate article
+        await this.validateArticleForAuthor(article);
 
         if(!this.articleRepository.getArticleById(article.id)){
             throw new Error(`Can't update article. Article with id '${article.id}' not found`);
@@ -54,6 +63,7 @@ class ArticleService implements IArticleService {
     }
 
     async deleteArticle(article: Article): Promise<void> {
+        this.authService.checkAuthorized();
         
         if(!article.id){
             throw new Error('id is required for deleting article.');
@@ -64,7 +74,22 @@ class ArticleService implements IArticleService {
             throw new Error(`Article with id '${article.id}' not found.`);
         }
 
+        if(foundArticle.authorId != this.authService.getAuthorized().id){
+            throw new Error("Access denied.");
+        }
+
         await this.articleRepository.deleteArticleById(article.id);
+    }
+
+    private async validateArticleForAuthor(article: Article): Promise<Article>{
+        this.authService.checkAuthorized();
+        let author = this.authService.getAuthorized();
+    
+        article.authorId = author.id;
+        let validation = await validateArticle(article);
+        validation.throwIfInvalid();
+
+        return article;
     }
 
 

@@ -1,9 +1,10 @@
 import { TestServer } from "./../setup/test.server";
 import { TestClient } from "./../setup/test.client";
-import Article from "./../../domain/entities/article";
 import { mockData } from "./../setup";
 import * as assert from 'assert';
 import { should } from 'chai';
+import { LoginOutput, LoginInput } from "../../core/services";
+import { Article } from "../../domain/entities";
 
 
 describe('should run workflow tests', () => {
@@ -21,9 +22,17 @@ describe('should run workflow tests', () => {
         await server.stop();
     });
 
-    beforeEach(() => {
+    beforeEach(async () => {
         database.setState(mockData);
         database.write();
+
+        // authorize
+        let loginInput: LoginInput = {
+            username: 'grigor',
+            password: 'pas'
+        };
+        let authResult = await client.post<LoginOutput>('/login', loginInput);
+        client.setAuthToken(authResult.data.token);
     });
 
     it('should get articles', async () => {

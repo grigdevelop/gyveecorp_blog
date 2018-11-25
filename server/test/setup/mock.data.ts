@@ -1,4 +1,4 @@
-import Article from "../../domain/entities/article";
+import { Article } from "../../domain/entities";
 
 class MockData{
     public articles: Article[] = [

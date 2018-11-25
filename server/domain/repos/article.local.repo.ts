@@ -1,9 +1,9 @@
-import Article from "../entities/article";
 import IArticleRepository from "../../core/repos/iArticle.repo";
 import { LocalDb } from "../providers/local.database.provider";
+import { Article } from "../entities";
 
 class ArticleLocalRepository implements IArticleRepository{
-            
+    
     constructor(private localDb: LocalDb){
 
     }
@@ -14,6 +14,17 @@ class ArticleLocalRepository implements IArticleRepository{
             resolve(articles);
         });
     }
+
+    getAuthorArticles(authorId: number): Promise<Article[]> {
+        return new Promise<Article[]>(resolve => {
+            let articles = this.localDb.get('articles')
+                .filter(a => a.authorId === authorId)
+                .value();
+                
+            resolve(articles);
+        });
+    }    
+            
 
     createArticle(article: Article): Promise<Article> {
         article.id = this.getId();
@@ -33,7 +44,7 @@ class ArticleLocalRepository implements IArticleRepository{
         return new Promise<Article>(resolve => {
 
             this.localDb.get('articles')
-                .find({id: article.id})
+                .find(a => a.id === article.id)
                 .assign(article)
                 .write();
 
@@ -46,7 +57,7 @@ class ArticleLocalRepository implements IArticleRepository{
         return new Promise<Article>(resolve => {
             
             let article = this.localDb.get('articles')
-                .find({id: id})
+                .find(a => a.id === id)
                 .value();
 
             resolve(article);
@@ -57,13 +68,14 @@ class ArticleLocalRepository implements IArticleRepository{
         return new Promise<void>(resolve => {
 
             this.localDb.get('articles')
-                .remove({id: id})
+                .remove(a => a.id === id)
                 .write();
 
             resolve();
 
         });
     }
+    
 
     private getId():number{
 

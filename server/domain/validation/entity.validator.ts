@@ -1,19 +1,24 @@
-import Article from "../entities/article";
 import * as Joi from 'joi';
 import { ValidationResult } from "./validation.result";
 import { ValidationErrorItem } from "joi";
-import { ValidationError } from "../../core/http/validation.error";
+import { LoginInput } from "../../core/services";
+import { Article } from '../entities';
 
-let articleSchema = Joi.object().keys({
+const articleSchema = Joi.object().keys({
     id: Joi.number().error(() => '"id" most be a number.').optional(),
     title: Joi.string().min(3).max(100).required(),
     desc: Joi.string().required(),
-    authorId: Joi.number().required(),
+    authorId: Joi.number().min(1).required(),
     content: Joi.string().required().error(() => 'content is required'),
     datePublished: Joi.date().required()
 });
 
-let options: Joi.ValidationOptions = {
+const loginInputSchema = Joi.object().keys({
+    username: Joi.string().min(3).max(10).required(),
+    password: Joi.string().required()
+});
+
+const options: Joi.ValidationOptions = {
     abortEarly: false
 };
 
@@ -50,13 +55,11 @@ let validateEntity = <T>(entity: T, schema: Joi.ObjectSchema) : Promise<Validati
 }
 
 let validateArticle = async (article: Article) : Promise<ValidationResult> => {
-    let result = await validateEntity(article, articleSchema);
-
-    // if(result.hasErrors){
-    //     throw new ValidationError(result);
-    // }
-        
-    return result;
+    return await validateEntity(article, articleSchema);
 };
 
-export { validateArticle }
+let validateLoginInput = async (login: LoginInput): Promise<ValidationResult> => {
+    return await validateEntity(login, loginInputSchema);
+}
+
+export { validateArticle, validateLoginInput }

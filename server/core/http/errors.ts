@@ -26,4 +26,15 @@ class ApiError extends Error{
     }
 }
 
-export { ApiError };
+
+class UnauthorizedError extends Error{
+
+    public readonly name: string = 'UnauthorizedError';
+
+    constructor(message: string){
+        super(message);
+    }
+
+}
+
+export { ApiError, UnauthorizedError };

@@ -7,6 +7,7 @@ import * as bodyParser from 'body-parser';
 import * as cors from 'cors';
 import { mockData } from ".";
 import { LocalDb } from "../../domain/providers/local.database.provider";
+import { AuthRoute } from "../../routes/auth.route";
 
 
 class TestServer{
@@ -30,7 +31,9 @@ class TestServer{
 
         // configure routes
         const articleRoutes: ArticleRoutes = new ArticleRoutes(this.envrionment);
+        const authRoutes: AuthRoute = new AuthRoute(this.envrionment);
 
+        authRoutes.setup(this.expressApp);
         articleRoutes.setup(this.expressApp);
     }
 
