@@ -1,8 +1,10 @@
-import Article from "../../domain/entities/article";
+import { Article } from "../../domain/entities";
 
 interface IArticleRepository {
 
     getArticles():Promise<Article[]>;
+
+    getAuthorArticles(authorId: number): Promise<Article[]>;
 
     createArticle(article: Article):Promise<Article>;
 

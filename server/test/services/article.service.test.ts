@@ -12,9 +12,12 @@ describe('Should run article service tests', () => {
     const articleService: IArticleService = environment.serviceLocator.articleService;
     const localDb = environment.databaseProvider.localDb;
 
-    beforeEach(() => {
+    beforeEach(async () => {
         localDb.setState(mockData);
         localDb.write();
+
+        let tokenResult = await environment.serviceLocator.authService.loginUser({username: 'grigor', password: 'pas'});
+        environment.serviceLocator.authService.setAuthorized(tokenResult.token);
     });
 
     describe('articleService.getArticles', () => {

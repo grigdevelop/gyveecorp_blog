@@ -26,6 +26,10 @@ class TestClient{
             });
         });
     }
+
+    public setAuthToken(token: string):void{
+        axios.defaults.headers['authorization-token'] = token;
+    }
 }
 
 export { TestClient };

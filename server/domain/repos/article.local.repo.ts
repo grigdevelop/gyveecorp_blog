@@ -1,9 +1,9 @@
-import Article from "../entities/article";
 import IArticleRepository from "../../core/repos/iArticle.repo";
 import { LocalDb } from "../providers/local.database.provider";
+import { Article } from "../entities";
 
 class ArticleLocalRepository implements IArticleRepository{
-            
+    
     constructor(private localDb: LocalDb){
 
     }
@@ -14,6 +14,17 @@ class ArticleLocalRepository implements IArticleRepository{
             resolve(articles);
         });
     }
+
+    getAuthorArticles(authorId: number): Promise<Article[]> {
+        return new Promise<Article[]>(resolve => {
+            let articles = this.localDb.get('articles')
+                .filter({authorId: authorId})
+                .value();
+                
+            resolve(articles);
+        });
+    }    
+            
 
     createArticle(article: Article): Promise<Article> {
         article.id = this.getId();
@@ -64,6 +75,7 @@ class ArticleLocalRepository implements IArticleRepository{
 
         });
     }
+    
 
     private getId():number{
 
