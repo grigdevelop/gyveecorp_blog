@@ -1,6 +1,6 @@
-import { IEnvironment } from "./../core";
-import { Express, Response} from 'express';
-import { ResponseResult } from "./../core/http/ResponseResult";
+import { IEnvironment } from "../core";
+import { Express, Response, NextFunction, RequestHandler} from 'express';
+import { ResponseResult } from "../core/http/ResponseResult";
 import { ApiError } from "../core/http/errors";
 
 /**
@@ -35,6 +35,24 @@ abstract class BaseRoute{
 
         }
 
+    }
+
+
+
+    protected authenticate: RequestHandler = async (request, response, next) => {
+      
+        let token: any = request.headers['authorization-token'];
+
+        if( token ){
+            await this.environment.application.controllerLocator.authService.setAuthorized(token);
+            next();
+        } else{
+            this.json(response, () => {
+                throw new Error('token not found');
+            });
+        }
+
+        
     }
 
     abstract setup(app: Express):void;

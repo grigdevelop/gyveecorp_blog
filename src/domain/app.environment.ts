@@ -10,7 +10,7 @@ class AppEnvironment implements IEnvironment{
     readonly application: Application;
 
     constructor(){
-        let dbProvider = new LocalDatabaseProvider('assets/db/prod.json');
+        let dbProvider = new LocalDatabaseProvider('src/assets/db/prod.json');
         let rp = new RepositoryLocator(dbProvider)
         let sp = new ServiceLocator(rp);
         let cp = new ControllerLocator(sp);

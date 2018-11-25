@@ -31,7 +31,7 @@ describe('should run workflow tests', () => {
             username: 'grigor',
             password: 'pas'
         };
-        let authResult = await client.post<LoginOutput>('/login', loginInput);
+        let authResult = await client.post<LoginOutput>('login', loginInput);
         client.setAuthToken(authResult.data.token);
     });
 

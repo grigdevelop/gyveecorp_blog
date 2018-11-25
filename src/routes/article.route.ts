@@ -1,5 +1,5 @@
-import BaseRoute from './best.route';
-import {Express, Request, Response } from 'express';
+import BaseRoute from './base.route';
+import {Express } from 'express';
 import { IEnvironment } from '../core';
 
 class ArticleRoutes extends BaseRoute {
@@ -12,20 +12,19 @@ class ArticleRoutes extends BaseRoute {
         
         let controller = this.environment.application.controllerLocator.articleController;
 
-        app.get('/article/getArticles', (resuest: Request, response: Response) => {
-
+        app.get('/article/getArticles', (resuest, response) => {
             this.json(response, async () => await controller.getArticles());
         });
-
-        app.post('/article/createArticle', (request: Request, response: Response)=> {
+      
+        app.post('/article/createArticle', this.authenticate, (request, response)=> {
             this.json(response, async () => await controller.createArticle(request.body));
         });
 
-        app.get('/article/getArticle/:id', (request: Request, response: Response)=> {
+        app.get('/article/getArticle/:id', (request, response)=> {
             this.json(response, async () => await controller.getArticle(request.params));
         });
 
-        app.post('/article/deleteArticle', (request: Request, response: Response)=> {
+        app.post('/article/deleteArticle', this.authenticate, (request, response)=> {
             this.json(response, async () => await controller.deleteArticle(request.body));
         });
     }

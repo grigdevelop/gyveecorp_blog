@@ -1,4 +1,4 @@
 import ArticleRoutes from "./article.route";
-import BaseRoute from "./best.route";
+import BaseRoute from "./base.route";
 
 export { ArticleRoutes, BaseRoute };

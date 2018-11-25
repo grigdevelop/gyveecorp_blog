@@ -9,25 +9,11 @@ class AuthRoute extends BaseRoute{
     }
 
     setup(app: Express): void {
-        let controller = this.environment.application.controllerLocator.authController;
-        
-        app.all('/*', async (request: Request, response: Response, next: NextFunction) => {
+        let controller = this.environment.application.controllerLocator.authController;      
 
-            if(request.url === '//login'){
-                return this.json(response, async () => controller.login(request.body));                
-            }
-
-            let token: any = request.headers['authorization-token'];
-
-            if( token ){
-                await this.environment.application.controllerLocator.authService.setAuthorized(token);
-                next();
-            } else{
-                this.json(response, () => {
-                    throw new Error('token not found');
-                });
-            }
-        })
+        app.post('/login', (request: Request, response: Response) => {
+            this.json(response, async () => controller.login(request.body));
+        });
     }
 
 }
