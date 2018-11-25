@@ -3,8 +3,8 @@ import { TestClient } from "./../setup/test.client";
 import { mockData } from "./../setup";
 import * as assert from 'assert';
 import { should } from 'chai';
-import { LoginOutput, LoginInput } from "../../core/services";
-import { Article } from "../../domain/entities";
+import { LoginOutput, LoginInput } from "./../../src/core/services";
+import { Article } from "./../../src/domain/entities";
 
 
 describe('should run workflow tests', () => {

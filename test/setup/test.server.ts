@@ -1,13 +1,12 @@
 import { TestEnvironment } from "./test.environment";
 import * as express from 'express';
 import { Express } from 'express';
-import { ArticleRoutes } from "../../routes";
 import * as http from "http";
 import * as bodyParser from 'body-parser';
 import * as cors from 'cors';
-import { mockData } from ".";
-import { LocalDb } from "../../domain/providers/local.database.provider";
-import { AuthRoute } from "../../routes/auth.route";
+import { ArticleRoutes } from "./../../src/routes";
+import { AuthRoute } from "./../../src/routes/auth.route";
+import { LocalDb } from "./../../src/domain/providers/local.database.provider";
 
 
 class TestServer{

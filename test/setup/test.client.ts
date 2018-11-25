@@ -1,6 +1,6 @@
 import { TestServer } from "./test.server";
 import axios from 'axios';
-import { ResponseResult } from "../../core/http/ResponseResult";
+import { ResponseResult } from "./../../src/core/http/ResponseResult";
 
 
 class TestClient{

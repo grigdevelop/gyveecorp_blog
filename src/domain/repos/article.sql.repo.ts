@@ -1,6 +1,6 @@
 import IArticleRepository from "../../core/repos/iArticle.repo";
-import { mockData } from "../../test/setup"; // TODO: not good use anything test in prod
 import { Article } from "../entities";
+import { mockData } from "./../../../test/setup"; // TODO: not good use here test data
 
 class ArticleSqlRepoistory implements IArticleRepository{
         

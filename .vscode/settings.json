@@ -1,16 +1,15 @@
 {
-    "mochaExplorer.files": "server/test/**/*.ts",
+    "mochaExplorer.files": "test/**/*.ts",
     "mochaExplorer.require": [
         "ts-node/register"
     ],
-    "mochaExplorer.cwd": "server",
     "files.exclude": {
         "**/.git": true,
         "**/.svn": true,
         "**/.hg": true,
         "**/CVS": true,
         "**/.DS_Store": true,
-        "**/server/node_modules": true,
-        "**/server/package-lock.json": true
+        "**/src/node_modules": true,
+        "**/src/package-lock.json": true
     }
 }

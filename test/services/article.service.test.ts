@@ -1,10 +1,10 @@
-import { TestEnvironment } from "../setup/test.environment";
-import IArticleService from "../../core/services/iArticle.service";
+import { TestEnvironment } from "./../setup/test.environment";
 import * as assert from 'assert';
-import { mockData } from "../setup";
+import { mockData } from "./../setup";
 import { should } from "chai";
-import { ValidationError } from "../../core/http/validation.error";
-import { Article } from "../../domain/entities";
+import { IArticleService } from "./../../src/core/services";
+import { Article } from "./../../src/domain/entities";
+import { ValidationError } from "./../../src/core/http/validation.error";
 
 describe('Should run article service tests', () => {
 

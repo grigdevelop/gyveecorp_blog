@@ -14,9 +14,9 @@
                 "ts-node/register"
             ],
             "args": [
-                "${workspaceFolder}\\server\\index.ts"
+                "${workspaceFolder}\\src\\index.ts"
             ],
-            "cwd": "${workspaceFolder}/server",
+            "cwd": "${workspaceFolder}/src",
             "restart": true
         },
         {
@@ -25,9 +25,9 @@
             "name": "Launch Program Update",
             "runtimeExecutable": "ts-node-dev",
             "args": [
-                "${workspaceFolder}\\server\\index.ts"
+                "${workspaceFolder}\\src\\index.ts"
             ],
-            "cwd": "${workspaceFolder}/server",
+            "cwd": "${workspaceFolder}/src",
             "restart": true
         }
     ]

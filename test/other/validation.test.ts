@@ -1,6 +1,6 @@
-import { mockData } from "../setup";
-import { validateArticle } from "../../domain/validation/entity.validator";
+import { mockData } from "./../setup";
 import { should } from 'chai';
+import { validateArticle } from "./../../src/domain/validation/entity.validator";
 
 describe('entity.validator.ts', () => {
 

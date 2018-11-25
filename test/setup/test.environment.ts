@@ -1,8 +1,8 @@
-import { IEnvironment } from "../../core";
-import { Application } from "../../domain";
-import { LocalDatabaseProvider } from "../../domain/providers";
-import { ControllerLocator, ServiceLocator, RepositoryLocator } from "../../domain/locators";
-import { IServiceLocator, IRepositoryLocator } from "../../core/locators";
+import { IEnvironment } from "./../../src/core";
+import { Application } from "./../../src/domain";
+import { IServiceLocator, IRepositoryLocator } from "./../../src/core/locators";
+import { LocalDatabaseProvider } from "./../../src/domain/providers";
+import { RepositoryLocator, ServiceLocator, ControllerLocator } from "./../../src/domain/locators";
 
 class TestEnvironment implements IEnvironment{
 
@@ -10,7 +10,7 @@ class TestEnvironment implements IEnvironment{
     readonly serviceLocator: IServiceLocator;
     readonly databaseProvider: LocalDatabaseProvider;
     
-    constructor(dbPath: string = 'testdb.json'){
+    constructor(dbPath: string = 'src/assets/db/testdb.json'){
         this.databaseProvider = new LocalDatabaseProvider(dbPath);
         let repo :IRepositoryLocator = new RepositoryLocator(this.databaseProvider);
         this.serviceLocator = new ServiceLocator(repo)
