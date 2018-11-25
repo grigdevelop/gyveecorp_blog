@@ -2,7 +2,7 @@ import { IDatabaseProvider } from "./../../core/providers";
 import lowdb = require('lowdb');
 import * as FileSync from 'lowdb/adapters/FileSync';
 import { LowdbSync } from 'lowdb';
-import Article from "../entities/article";
+import { Article } from "./../entities";
 
 class LocalDbScheme{
     public articles: Article[] = []

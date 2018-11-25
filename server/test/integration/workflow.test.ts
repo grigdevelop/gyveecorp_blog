@@ -1,10 +1,10 @@
 import { TestServer } from "./../setup/test.server";
 import { TestClient } from "./../setup/test.client";
-import Article from "./../../domain/entities/article";
 import { mockData } from "./../setup";
 import * as assert from 'assert';
 import { should } from 'chai';
 import { LoginOutput, LoginInput } from "../../core/services";
+import { Article } from "../../domain/entities";
 
 
 describe('should run workflow tests', () => {

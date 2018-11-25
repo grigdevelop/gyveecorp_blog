@@ -1,8 +1,8 @@
-import Article from "../entities/article";
 import * as Joi from 'joi';
 import { ValidationResult } from "./validation.result";
 import { ValidationErrorItem } from "joi";
 import { LoginInput } from "../../core/services";
+import { Article } from '../entities';
 
 const articleSchema = Joi.object().keys({
     id: Joi.number().error(() => '"id" most be a number.').optional(),

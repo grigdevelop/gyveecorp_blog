@@ -18,7 +18,7 @@ class ArticleLocalRepository implements IArticleRepository{
     getAuthorArticles(authorId: number): Promise<Article[]> {
         return new Promise<Article[]>(resolve => {
             let articles = this.localDb.get('articles')
-                .filter({authorId: authorId})
+                .filter(a => a.authorId === authorId)
                 .value();
                 
             resolve(articles);
@@ -44,7 +44,7 @@ class ArticleLocalRepository implements IArticleRepository{
         return new Promise<Article>(resolve => {
 
             this.localDb.get('articles')
-                .find({id: article.id})
+                .find(a => a.id === article.id)
                 .assign(article)
                 .write();
 
@@ -57,7 +57,7 @@ class ArticleLocalRepository implements IArticleRepository{
         return new Promise<Article>(resolve => {
             
             let article = this.localDb.get('articles')
-                .find({id: id})
+                .find(a => a.id === id)
                 .value();
 
             resolve(article);
@@ -68,7 +68,7 @@ class ArticleLocalRepository implements IArticleRepository{
         return new Promise<void>(resolve => {
 
             this.localDb.get('articles')
-                .remove({id: id})
+                .remove(a => a.id === id)
                 .write();
 
             resolve();

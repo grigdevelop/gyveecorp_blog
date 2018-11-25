@@ -1,9 +1,9 @@
 import IArticleService from "../../core/services/iArticle.service";
 import IArticleRepository from "../../core/repos/iArticle.repo";
-import Article from "../entities/article";
 import { validateArticle } from "../validation/entity.validator";
 import { toValidInt } from "../validation/validators";
 import { IAuthService } from "../../core/services/iAuth.service";
+import { Article } from "../entities";
 
 class ArticleService implements IArticleService {
        

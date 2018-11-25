@@ -2,9 +2,9 @@ import { TestEnvironment } from "../setup/test.environment";
 import IArticleService from "../../core/services/iArticle.service";
 import * as assert from 'assert';
 import { mockData } from "../setup";
-import Article from "../../domain/entities/article";
 import { should } from "chai";
 import { ValidationError } from "../../core/http/validation.error";
+import { Article } from "../../domain/entities";
 
 describe('Should run article service tests', () => {
 
@@ -72,7 +72,7 @@ describe('Should run article service tests', () => {
             article = await articleService.updateArticle(article);
 
             let updatedArticle : Article = localDb.get('articles')
-                .find({id: article.id})
+                .find(a => a.id === article.id)
                 .value();
 
             should().equal(article.title, updatedArticle.title);

@@ -1,5 +1,5 @@
-import Article from "./article";
-import User from "./user";
+import { User } from "./user";
+import { Article } from "./article";
 
 
 export { Article, User };

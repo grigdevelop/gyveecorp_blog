@@ -1,5 +1,5 @@
-import Article from "../domain/entities/article";
 import IArticleService from "../core/services/iArticle.service";
+import { Article } from "../domain/entities";
 
 class ArticleController {
     constructor(private readonly articleService: IArticleService){
